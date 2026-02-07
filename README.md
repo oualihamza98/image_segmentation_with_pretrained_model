@@ -1,3 +1,4 @@
+
 # Image Segmentation App with DeepLabV3+ResNet50
 
 Application Flask de segmentation sémantique d'images utilisant un modèle de Deep Learning.
@@ -28,3 +29,4 @@ Accès : http://localhost:3000
 ## Output
 - Image segmentée avec masque coloré superposé
 - Liste des classes détectées (person, car, dog, etc.)
+
