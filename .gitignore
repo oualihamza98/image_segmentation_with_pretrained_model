@@ -1,0 +1,20 @@
+# Images générées
+images/segmented_*
+
+# Environnement virtuel
+venv/
+mon_enviro/
+__pycache__/
+*.pyc
+
+# Modèles téléchargés
+*.pth
+*.pt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/ 

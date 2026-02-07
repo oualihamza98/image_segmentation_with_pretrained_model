@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Image Segmentation</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <style>
+            .result-container {
+                margin-top: 30px;
+                padding: 20px;
+            }
+            .segmented-image {
+                max-width: 800px;
+                border: 3px solid #0d6efd;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .classes-list {
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                margin: 20px auto;
+                max-width: 600px;
+            }
+            .class-badge {
+                display: inline-block;
+                background-color: #0d6efd;
+                color: white;
+                padding: 5px 12px;
+                margin: 5px;
+                border-radius: 15px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 class="text-center mt-4">Image Segmentation - DeepLabV3+ResNet50</h1>
+
+        <form class="p-3 text-center" action='/' method="post" enctype="multipart/form-data">
+            <input class="form-control w-50 mx-auto" type="file" name="imagefile" accept="image/*">
+            <input class="btn btn-primary mt-3" type="submit" value="Segment Image">
+        </form>
+
+        {% if prediction %}
+            <div class="result-container text-center">
+                <p class="text-success fs-5">✅ {{prediction}}</p>
+                
+                {% if detected_classes %}
+                <div class="classes-list">
+                    <h5>Detected Classes:</h5>
+                    {% for class_name in detected_classes %}
+                        <span class="class-badge">{{ class_name }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {% if segmented_image %}
+            <div class="text-center mt-4">
+                <h3>Segmented Image:</h3>
+                <img src="{{ url_for('serve_image', filename=segmented_image) }}" class="segmented-image img-fluid" alt="Segmented Image">
+            </div>
+        {% endif %}
+    </body>
+</html>
